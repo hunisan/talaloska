@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Talaloska</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="game.js"></script>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h1>Találóska</h1>
+<div id="game">
+    <div id="before">
+    </div>
+    <div hidden="true" id="victory">
+        <p><b>Gratulálunk! Eltaláltad!</b></p>
+        <p>Ez volt a szó: <b><span id="solution"></span></b></p>
+    </div>
+    <div hidden="true" id="loss">
+        <p><b>Ez most nem adta ki neked :/</b></p>
+        <p>Ez volt a szó: <b><span id="failsolution"></span></b></p>
+    </div>
+    <div id="player">
+        <span id="firstrow">
+            
+            <input type="text" id="guess" placeholder="">
+            <button id="send">Küldés</button>
+        </span>
+        <p id="giveup"> <a id="giveuplink">Feladom :(</a></p>
+    </div>
+    <div id="after">
+    </div>
+</div>
+
+</body>
+</html>

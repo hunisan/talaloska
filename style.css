@@ -1,0 +1,52 @@
+h1 {
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+}
+p {
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    background: rgb(222,159,205);
+background: radial-gradient(circle, rgba(222,159,205,1) 0%, rgba(237,180,228,1) 65%, rgba(254,236,255,1) 100%);
+ color: rgb(144, 109, 109)
+}
+#game {
+    margin: auto;
+    width: 30%;
+    height: 50%;
+}
+#before > p, #after > p {
+    margin: 5px;
+    font-size: 0.3rem; /* animation starting size */
+    text-align: left;
+}
+
+#player input, #player button, #giveup {
+    font-size: 1.2rem;
+    margin: 0.5rem;
+    text-align: center;
+}
+
+#guess {
+    border: none;
+}
+#firstrow {
+    margin: auto;
+    width: 50%
+}
+
+#player {
+    margin: auto;
+    /*width: 50%;*/
+}
+
+#giveup {
+    right: 0px;
+    text-align: right;
+}
+
+#giveuplink {
+    color: rgb(133, 0, 0);
+    font-style: italic;
+}
