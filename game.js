@@ -135,6 +135,26 @@ function setStartTime()
   startTime = Date.now();
 }
   
+function restyle(){
+  var element = $("#before").children().last();
+  var count = $("#before").children().length;
+  var i = 0;
+  while(element.is("p"))
+  {
+    element.css({opacity: 1 - i / (count+1)})
+    element = element.prev()
+    i++;
+  }
+  element = $("#after").children().first();
+  count = $("#after").children().length;
+  i = 0;
+  while(element.is("p"))
+  {
+    element.css({opacity: 1 - i / (count+1)})
+    element = element.next()
+    i++;
+  }
+}
 function onEnter(){
     var guess = $("#guess")[0].value.toLowerCase()
     
@@ -163,6 +183,8 @@ function onEnter(){
     {
       addToWordList(guess, "#after")
     }
+
+    restyle()
   }
 
 function giveUp()
