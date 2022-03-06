@@ -26,15 +26,13 @@ fetch("./magyar_szavak.txt").then(
 
 function createWordElement(word)
 {
-    return $("<p></p>").text(word).hide().fadeIn(0).animate({fontSize: '1.2rem'}, 300);
+    return $("<p></p>").addClass("attempt").text(word).hide().fadeIn(0).animate({fontSize: '1.2rem'}, 300);
 }
 
 function compareWords(word1, word2)
 {
-  console.log(word1 + " " + word2);
     if(word1.localeCompare(word2) == 0)
     {
-      console.log("shit")
       return 0;
     }
     if(words.indexOf(word1) > words.indexOf(word2))
@@ -67,15 +65,42 @@ function addToWordList(word, listName) {
     }
 }
 
+function setErrorMessage(message)
+{
+  $("#error").show();
+  $("#error_message").text(message);
+}
+
+function clearErrorMessage(message)
+{
+  $("#error_message").text("");
+  $("#error").fadeOut();
+}
+
+
 function validateGuess(guess)
 {
     guess = guess.toLowerCase()
     if(guess.length < 1)
     {
+        setErrorMessage("Írj be valamit ember")
         return false;
     }
 
-    return words.includes(guess) || guess.localeCompare(solution) == 0
+    if(!words.includes(guess) && !guess.localeCompare(solution) == 0)
+    {
+        setErrorMessage("Ez nem egy szó (vagy csak nem szerepel a listában)")
+        return false;
+    }
+
+    if($(".attempt").text().includes(guess))
+    {
+      setErrorMessage("Ezt már írtad")
+      return false;
+    }
+
+    clearErrorMessage();
+    return true;
 }
 
 function clearGuess()

@@ -50,3 +50,27 @@ background: radial-gradient(circle, rgba(222,159,205,1) 0%, rgba(237,180,228,1) 
     color: rgb(133, 0, 0);
     font-style: italic;
 }
+
+#error_message {
+    color: rgb(133, 0, 0);
+    font-style: italic;
+
+}
+
+@media only screen and (max-width: 1200px) {
+
+    h1 {
+        font-size: 5rem;
+    }
+
+    a, p, button, input {
+        font-size: 4rem !important;
+    }
+    #game {
+        width: 100%;
+    }
+    #guess {
+        width: 50%;
+      height: 5rem;
+    }
+  }
