@@ -21,15 +21,17 @@ background: radial-gradient(circle, rgba(222,159,205,1) 0%, rgba(237,180,228,1) 
     font-size: 0.3rem; /* animation starting size */
     text-align: left;
 }
-
+#player button, #giveup {
+    text-align: center;
+}
 #player input, #player button, #giveup {
     font-size: 1.2rem;
     margin: 0.5rem;
-    text-align: center;
 }
 
 #guess {
     border: none;
+    text-align: left;
 }
 #firstrow {
     margin: auto;

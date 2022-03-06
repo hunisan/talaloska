@@ -1,6 +1,8 @@
 solution=""
 
 var words = []
+var startTime = null;
+
 fetch("./magyar_szavak.txt").then(
       function(response) {
         if (response.status !== 200) {
@@ -113,6 +115,24 @@ function victory()
     $("#player").hide(500)
     $("#victory").slideDown()
     $("#solution").text(solution)
+
+    var guess_count = $(".attempt").length + 1;
+
+    $("#guess_count").text(guess_count.toString())
+
+    var finish_time = Date.now();
+    var time = finish_time - startTime;
+    var seconds = Math.floor(time / 1000)
+    var minutes = Math.floor(seconds / 60)
+    seconds -= minutes * 60;
+
+    $("#time").text(minutes.toString()+"m"+seconds.toString()+"s");
+
+}
+
+function setStartTime()
+{
+  startTime = Date.now();
 }
   
 function onEnter(){
@@ -123,6 +143,10 @@ function onEnter(){
         return;
     }
 
+    if(startTime == null)
+    {
+      setStartTime();
+    }
     clearGuess()
 
     var comparison = compareWords(guess, solution)
