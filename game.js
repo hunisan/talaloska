@@ -169,6 +169,7 @@ function giveUp()
 {
   if(confirm("Biztos fel szeretnéd adni?"))
   {
+    clearErrorMessage()
     $("#player").hide(500)
     $("#loss").slideDown()
     $('#failsolution').text(solution)
