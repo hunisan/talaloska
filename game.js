@@ -67,7 +67,7 @@ function addToWordList(word, listName) {
 
 function setErrorMessage(message)
 {
-  $("#error").show();
+  $("#error").slideDown(250);
   $("#error_message").text(message);
 }
 
@@ -116,7 +116,7 @@ function victory()
 }
   
 function onEnter(){
-    var guess = $("#guess")[0].value
+    var guess = $("#guess")[0].value.toLowerCase()
     
     if(validateGuess(guess) == false)
     {
