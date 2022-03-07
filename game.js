@@ -1,7 +1,6 @@
 solution=""
 
 var words = []
-var specialWords = ['halac']
 var attempts = []
 var startTime = null;
 
@@ -91,7 +90,7 @@ function validateGuess(guess)
         return false;
     }
 
-    if(!words.includes(guess) && !guess.localeCompare(solution) == 0 && !specialWords.includes(guess))
+    if(!words.includes(guess) && !guess.localeCompare(solution) == 0)
     {
         setErrorMessage("Ez nem egy szó (vagy csak nem szerepel a listában)")
         return false;
