@@ -1,6 +1,8 @@
 solution=""
 
 var words = []
+var specialWords = ['halac']
+var attempts = []
 var startTime = null;
 
 fetch("./magyar_szavak.txt").then(
@@ -89,13 +91,13 @@ function validateGuess(guess)
         return false;
     }
 
-    if(!words.includes(guess) && !guess.localeCompare(solution) == 0)
+    if(!words.includes(guess) && !guess.localeCompare(solution) == 0 && !specialWords.includes(guess))
     {
         setErrorMessage("Ez nem egy szó (vagy csak nem szerepel a listában)")
         return false;
     }
-
-    if($(".attempt").text().includes(guess))
+    
+    if(attempts.includes(guess))
     {
       setErrorMessage("Ezt már írtad")
       return false;
@@ -115,10 +117,7 @@ function victory()
     $("#player").hide(500)
     $("#victory").slideDown()
     $("#solution").text(solution)
-
-    var guess_count = $(".attempt").length + 1;
-
-    $("#guess_count").text(guess_count.toString())
+    $("#guess_count").text(attempts.length.toString())
 
     var finish_time = Date.now();
     var time = finish_time - startTime;
@@ -168,6 +167,8 @@ function onEnter(){
       setStartTime();
     }
     clearGuess()
+
+    attempts.push(guess)
 
     var comparison = compareWords(guess, solution)
 
