@@ -41,7 +41,7 @@ fetch("./magyar_szavak.txt").then(
 
 function loadDailies()
 {
-  fetch('/titkos.txt').then(
+  fetch('./titkos.txt').then(
     function(response) {
       if (response.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' +
