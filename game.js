@@ -4,6 +4,20 @@ var words = []
 var attempts = []
 var startTime = null;
 
+var dailies = []
+
+var firstDay = new Date(2022,3,28)
+var dayIndex;
+
+
+const DEBUG = false;
+
+var finish_time;
+var time;
+var seconds;
+var minutes;
+var guessCount;
+
 fetch("./magyar_szavak.txt").then(
       function(response) {
         if (response.status !== 200) {
@@ -12,20 +26,57 @@ fetch("./magyar_szavak.txt").then(
           return;
         }
   
-        // Examine the text in the response
         response.text().then(function(data) {
           data.split('\n').forEach(element => {
             words.push(element.replace('\r','').toLowerCase());
           });
 
-
-          solution = words[Math.floor(Math.random()*words.length)];
+          loadDailies();
         });
       }
     )
     .catch(function(err) {
       console.log('Fetch Error :-S', err);
     });
+
+function loadDailies()
+{
+  fetch('/titkos.txt').then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+      response.text().then(function(data) {
+        
+        dailies = decodeURIComponent(escape(window.atob( data))).split('\n')
+        
+        updateSolution()
+      });
+    }
+  )
+}
+
+function updateSolution()
+{
+  dayIndex = Math.floor((new Date() - firstDay) / (1000 * 60 * 60 * 24)); 
+
+  if(dayIndex >= 0 && dayIndex < dailies.length)
+  {
+    solution = dailies[dayIndex];
+  }
+  else
+  {
+    solution = words[Math.floor(Math.random()*words.length)];
+  }
+
+  if(DEBUG)
+  {
+    console.log("Ez lett a solution: " + solution)
+  }
+
+}
 
 function createWordElement(word)
 {
@@ -116,16 +167,76 @@ function victory()
     $("#player").hide(500)
     $("#victory").slideDown()
     $("#solution").text(solution)
-    $("#guess_count").text(attempts.length.toString())
 
-    var finish_time = Date.now();
-    var time = finish_time - startTime;
-    var seconds = Math.floor(time / 1000)
-    var minutes = Math.floor(seconds / 60)
+    guessCount = attempts.length.toString();
+    $("#guess_count").text(guessCount);
+
+    finish_time = Date.now();
+    time = finish_time - startTime;
+    seconds = Math.floor(time / 1000)
+    minutes = Math.floor(seconds / 60)
     seconds -= minutes * 60;
 
     $("#time").text(minutes.toString()+"m"+seconds.toString()+"s");
 
+}
+
+function getTimeEmoji(minutes)
+{
+  if(minutes < 1)
+  {
+    return '🤯'
+  }
+  else if(minutes < 2)
+  {
+    return '😎'
+  }
+  else if(minutes < 3)
+  {
+    return '🥰'
+  }
+  else if(minutes < 5)
+  {
+    return '😍'
+  }
+  else if(minutes < 10)
+  {
+    return '🤔'
+  }
+  else
+  {
+    return '😬'
+  }
+}
+
+function getGuessEmoji(guesses)
+{
+  if(guesses < 3)
+  {
+    return '🚀'
+  }
+  else if(guesses < 10)
+  {
+    return '🚅'
+  }
+  else if(guesses < 20)
+  {
+    return '🚲'
+  }
+  else
+  {
+    return '🐌'
+  }
+}
+
+function copyToClipboard()
+{
+  message = `Találóska ${dayIndex + 1}. nap 🌞
+Meglett ${guessCount} tippből ${getGuessEmoji(guessCount)} ${minutes}p ${seconds}mp alatt ${getTimeEmoji(minutes)}
+https://hunisan.github.io/talaloska/`
+
+
+  navigator.clipboard.writeText(message);
 }
 
 function setStartTime()

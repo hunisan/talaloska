@@ -48,6 +48,15 @@ background: radial-gradient(circle, rgba(222,159,205,1) 0%, rgba(237,180,228,1) 
     text-align: right;
 }
 
+#victory a {
+    color: rgb(133, 0, 0);
+}
+
+#victory a:hover {
+    text-decoration: underline;
+    font-style: italic;
+}
+
 #giveuplink {
     color: rgb(133, 0, 0);
     font-style: italic;
