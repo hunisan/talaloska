@@ -11,6 +11,7 @@ var dayIndex;
 
 
 const DEBUG = false;
+const isMobile = navigator.userAgentData.mobile;
 
 var finish_time;
 var time;
@@ -237,6 +238,14 @@ https://hunisan.github.io/talaloska/`
 
 
   navigator.clipboard.writeText(message);
+  $("#copyPopup").fadeIn(500).delay().fadeOut(1000)
+
+  if(isMobile)
+  {
+    navigator.share({
+      text: message
+    })
+  }
 }
 
 function setStartTime()

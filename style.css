@@ -57,6 +57,13 @@ background: radial-gradient(circle, rgba(222,159,205,1) 0%, rgba(237,180,228,1) 
     font-style: italic;
 }
 
+#copyPopup p {
+    position: fixed;
+    bottom: 50vh;
+    color: black;
+    height: 2rem;
+}
+
 #giveuplink {
     color: rgb(133, 0, 0);
     font-style: italic;
