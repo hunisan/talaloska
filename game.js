@@ -11,7 +11,11 @@ var dayIndex;
 
 
 const DEBUG = false;
-const isMobile = navigator.userAgentData.mobile;
+
+const userAgent = window.navigator.userAgent;
+
+const isIOSMobile = userAgent.match(/iPad/i) || userAgent.match(/iPhone/i)
+const isMobile = isIOSMobile || navigator.userAgentData?.mobile;
 
 var finish_time;
 var time;
