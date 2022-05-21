@@ -139,7 +139,7 @@ function clearErrorMessage(message)
 
 function validateGuess(guess)
 {
-    guess = guess.toLowerCase()
+    guess = guess.toLowerCase().trim();
     if(guess.length < 1)
     {
         setErrorMessage("Írj be valamit ember")
