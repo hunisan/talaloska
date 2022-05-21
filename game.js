@@ -6,7 +6,7 @@ var startTime = null;
 
 var dailies = []
 
-var firstDay = new Date(2022,3,28)
+var firstDay = new Date(2022,4,21)
 var dayIndex;
 
 
